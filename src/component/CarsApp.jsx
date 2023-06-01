@@ -26,16 +26,19 @@ class CarsApp extends React.Component {
 				make: "Toyota",
 				quantity: 10,
 				id: 1,
+				// obj: { 1: 2 },
 			},
 			{
 				make: "Honda",
 				quantity: 7,
 				id: 2,
+				// obj: { 1: 2 },
 			},
 			{
 				make: "Nissan",
 				quantity: 5,
 				id: 3,
+				// obj: { 1: 2 },
 			},
 		],
 		totalQuantity: 22,
@@ -48,6 +51,7 @@ class CarsApp extends React.Component {
 				cars: [
 					...prev.cars.slice(0, index),
 					{ ...prev.cars[index], quantity: prev.cars[index].quantity - 1 },
+					// { ...prev.cars[index], obj: { 1: 3 } },
 					...prev.cars.slice(index + 1),
 				],
 			};
