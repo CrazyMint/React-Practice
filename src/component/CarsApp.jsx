@@ -1,6 +1,7 @@
-import React from "react";
-import Car from "./Car";
-import SellButton from "./SellButton";
+import React from 'react'
+import Car from './Car'
+import SellButton from './SellButton'
+import Test from './Test'
 
 /**
  * uuid: universal unique id
@@ -20,65 +21,69 @@ import SellButton from "./SellButton";
 // obj.c === obj2.c; // false -> deep copy
 
 class CarsApp extends React.Component {
-	state = {
-		cars: [
-			{
-				make: "Toyota",
-				quantity: 10,
-				id: 1,
-				// obj: { 1: 2 },
-			},
-			{
-				make: "Honda",
-				quantity: 7,
-				id: 2,
-				// obj: { 1: 2 },
-			},
-			{
-				make: "Nissan",
-				quantity: 5,
-				id: 3,
-				// obj: { 1: 2 },
-			},
-		],
-		totalQuantity: 22,
-	};
+  state = {
+    cars: [
+      {
+        make: 'Toyota',
+        quantity: 10,
+        id: 1,
+        // obj: { 1: 2 },
+      },
+      {
+        make: 'Honda',
+        quantity: 7,
+        id: 2,
+        // obj: { 1: 2 },
+      },
+      {
+        make: 'Nissan',
+        quantity: 5,
+        id: 3,
+        // obj: { 1: 2 },
+      },
+    ],
+    totalQuantity: 22,
+  }
 
-	handleSell = (index) => {
-		this.setState((prev) => {
-			const nextState = {
-				...prev,
-				cars: [
-					...prev.cars.slice(0, index),
-					{ ...prev.cars[index], quantity: prev.cars[index].quantity - 1 },
-					// { ...prev.cars[index], obj: { 1: 3 } },
-					...prev.cars.slice(index + 1),
-				],
-			};
-			return nextState;
-		});
-	};
+  handleSell = (index) => {
+    this.setState((prev) => {
+      const nextState = {
+        ...prev,
+        cars: [
+          ...prev.cars.slice(0, index),
+          {
+            ...prev.cars[index],
+            quantity: prev.cars[index].quantity - 1,
+          },
+          // { ...prev.cars[index], obj: { 1: 3 } },
+          ...prev.cars.slice(index + 1),
+        ],
+      }
+      return nextState
+    })
+  }
 
-	render() {
-		return (
-			<>
-				<div>
-					{this.state.cars.map((car) => (
-						<Car carData={car} key={car.id} />
-					))}
-				</div>
-				<div>
-					{this.state.cars.map((car, index) => (
-						<SellButton
-							key={car.id}
-							index={index}
-							handleSell={this.handleSell}
-						/>
-					))}
-				</div>
-			</>
-		);
-	}
+  render() {
+    return (
+      <>
+        <div>
+          {this.state.cars.map((car) => (
+            <Car carData={car} key={car.id} />
+          ))}
+        </div>
+        <div>
+          {this.state.cars.map((car, index) => (
+            <SellButton
+              key={car.id}
+              index={index}
+              handleSell={this.handleSell}
+            />
+          ))}
+        </div>
+        <Test />
+      </>
+    )
+  }
 }
 
-export default CarsApp;
+export default CarsApp
